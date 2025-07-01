@@ -1,15 +1,14 @@
-
-version: "3.8"
+version: '3.9'
 
 services:
   api:
     build:
-      context: .
+      context: ./app           # Aponta para a pasta onde está o Dockerfile e o app.py
       dockerfile: Dockerfile
     ports:
       - "5000:5000"
     volumes:
-      - .:/app
+      - ./app:/app             # Garante que o app.py esteja disponível no /app do container
     environment:
       FLASK_APP: app.py
       FLASK_ENV: development
@@ -24,11 +23,9 @@ services:
       POSTGRES_PASSWORD: admin
       POSTGRES_DB: escola
     ports:
-      - "5432:5432"
+      - "5432:3000"
     volumes:
       - db_data:/var/lib/postgresql/data
 
 volumes:
   db_data:
-
-
